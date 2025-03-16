@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Big or Small?</title>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+        body {
+            background-color: black;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            color: white;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .btn {
+            background: red;
+            color: white;
+            border: 2px solid black;
+            padding: 15px 30px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn:hover {
+            background: darkred;
+            transform: scale(1.1);
+        }
+
+        .container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .result {
+            font-size: 50px;
+            margin-top: 100px;
+            padding: 20px;
+            border: 3px solid red;
+            display: inline-block;
+            text-shadow: 3px 3px black;
+            opacity: 0;
+            transition: opacity 0.5s, transform 0.5s;
+            position: relative;
+            z-index: 2;
+        }
+
+        .show {
+            opacity: 1;
+            transform: scale(1.2);
+            animation: glitch 0.5s infinite alternate;
+        }
+
+        @keyframes glitch {
+            0% { text-shadow: 3px 3px red, -3px -3px black; }
+            100% { text-shadow: -3px -3px red, 3px 3px black; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="particles-js"></div>
+
+    <div class="container">
+        <h1>RISHBAH WEB PRIVATE</h1>
+        <button class="btn" onclick="pickRandom()">RESULT</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function pickRandom() {
+            let choices = ["BIG", "SMALL"];
+            let randomChoice = choices[Math.floor(Math.random() * choices.length)];
+            let resultDiv = document.getElementById("result");
+            
+            resultDiv.textContent = randomChoice;
+            resultDiv.classList.add("show");
+
+            setTimeout(() => {
+                resultDiv.classList.remove("show");
+            }, 2000);
+        }
+
+        // Initialize particles.js
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 100, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#ff0000" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.9, "random": false },
+                "size": { "value": 4, "random": true },
+                "move": { "enable": true, "speed": 2, "direction": "none", "random": false }
+            }
+        });
+    </script>
+
+</body>
+</html>
