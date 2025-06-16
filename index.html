@@ -1,10 +1,11 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NXM TRADER WEB</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
   <style>
-    /* ----------  Base layout ---------- */
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     body{
       font-family:"Poppins",sans-serif;
@@ -12,90 +13,116 @@
       display:flex;
       justify-content:center;
       align-items:center;
-      background:#000; /* fallback */
+      background:#000;
       background-size:400% 400%;
       animation:gradMove 15s ease infinite;
       color:#fff;
       overflow:hidden;
-    }/* Animated background gradient */
-@keyframes gradMove{
-  0%{background-position:0% 50%;background-image:linear-gradient(135deg,#3b8d99,#6b6b83,#aa4b6b)}
-  50%{background-position:100% 50%;background-image:linear-gradient(135deg,#aa4b6b,#3b8d99,#6b6b83)}
-  100%{background-position:0% 50%;background-image:linear-gradient(135deg,#3b8d99,#6b6b83,#aa4b6b)}
-}
+      padding: 20px;
+    }
 
-/* ----------  Cards ---------- */
-.card{
-  background:#ffffff0d;
-  backdrop-filter:blur(14px) saturate(160%);
-  border:1px solid #ffffff2d;
-  padding:42px 34px;
-  border-radius:22px;
-  width:92%;
-  max-width:420px;
-  text-align:center;
-  box-shadow:0 20px 32px rgba(0,0,0,0.35);
-  display:none;
-  animation:fadeIn 0.7s ease forwards;
-}
-.card.show{display:block}
+    @keyframes gradMove{
+      0%{background-position:0% 50%;background-image:linear-gradient(135deg,#3b8d99,#6b6b83,#aa4b6b)}
+      50%{background-position:100% 50%;background-image:linear-gradient(135deg,#aa4b6b,#3b8d99,#6b6b83)}
+      100%{background-position:0% 50%;background-image:linear-gradient(135deg,#3b8d99,#6b6b83,#aa4b6b)}
+    }
 
-h2{font-weight:600;margin-bottom:30px;font-size:1.6rem;}
+    .card{
+      background:#ffffff0d;
+      backdrop-filter:blur(14px) saturate(160%);
+      border:1px solid #ffffff2d;
+      padding:36px 28px;
+      border-radius:20px;
+      width:100%;
+      max-width:400px;
+      text-align:center;
+      box-shadow:0 20px 32px rgba(0,0,0,0.35);
+      display:none;
+      animation:fadeIn 0.7s ease forwards;
+    }
+    .card.show{display:block}
 
-/* ----------  Inputs & buttons ---------- */
-input[type=text],button{
-  width:100%;
-  padding:16px 18px;
-  font-size:1rem;
-  border:none;
-  border-radius:12px;
-  outline:none;
-}
-input[type=text]{
-  background:#ffffffdb;
-  color:#333;
-  margin-bottom:20px;
-}
-button{
-  background:#ff6b6b;
-  color:#fff;
-  cursor:pointer;
-  font-weight:600;
-  transition:transform .25s,box-shadow .25s;
-}
-button:hover{
-  transform:translateY(-4px);
-  box-shadow:0 10px 18px rgba(0,0,0,0.3);
-}
+    h2{font-weight:600;margin-bottom:24px;font-size:1.4rem;}
 
-/* ----------  Result & Timer text ---------- */
-#result{margin-top:30px;font-size:1.6rem;font-weight:700;letter-spacing:1px;text-shadow:0 3px 6px rgba(0,0,0,.3);}
-#timer1m{margin-top:26px;font-size:2.2rem;font-weight:700;letter-spacing:6px;}
-#period1m{margin-top:6px;font-size:0.9rem;opacity:0.8;user-select:text;word-break:break-all;}
-#error{color:#ffb3b3;margin-top:10px;font-size:.9rem}
+    input[type=text], button{
+      width:100%;
+      padding:14px 16px;
+      font-size:1rem;
+      border:none;
+      border-radius:10px;
+      outline:none;
+    }
+    input[type=text]{
+      background:#ffffffdb;
+      color:#333;
+      margin-bottom:18px;
+    }
+    button{
+      background:#ff6b6b;
+      color:#fff;
+      cursor:pointer;
+      font-weight:600;
+      transition:transform .25s,box-shadow .25s;
+    }
+    button:hover{
+      transform:translateY(-4px);
+      box-shadow:0 10px 18px rgba(0,0,0,0.3);
+    }
 
-/* ----------  Animations ---------- */
-@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+    #result{
+      margin-top:24px;
+      font-size:1.5rem;
+      font-weight:700;
+      letter-spacing:1px;
+      text-shadow:0 3px 6px rgba(0,0,0,.3);
+    }
+    #timer1m{
+      margin-top:22px;
+      font-size:2rem;
+      font-weight:700;
+      letter-spacing:5px;
+    }
+    #period1m{
+      margin-top:5px;
+      font-size:0.85rem;
+      opacity:0.8;
+      word-break:break-word;
+    }
+    #error{
+      color:#ffb3b3;
+      margin-top:10px;
+      font-size:.85rem;
+    }
 
+    @keyframes fadeIn{
+      from{opacity:0;transform:translateY(20px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+
+    @media (max-width: 480px) {
+      h2 { font-size: 1.2rem; }
+      #timer1m { font-size: 1.6rem; }
+      #result { font-size: 1.3rem; }
+    }
   </style>
 </head>
 <body>
-  <!-- ---------- Login Card ---------- -->
   <div id="loginCard" class="card show">
     <h2>NXM TRADER LOGIN</h2>
     <input type="text" id="keyInput" placeholder="ENTER WEB KEY" />
     <button onclick="unlock()">LOGIN</button>
     <div id="error"></div>
-  </div>  <!-- ---------- Predictor Card ---------- -->  <div id="predictCard" class="card">
-    <h2>WELCOME VIP USER</h2><!-- Timer & Period display -->
-<div id="timer1m">00 : 00</div>
-<div id="period1m"></div>
+  </div>
 
-<!-- Prediction Section -->
-<button style="margin-top:30px" onclick="predict()">SHOW</button>
-<div id="result"></div>
+  <div id="predictCard" class="card">
+    <h2>WELCOME VIP USER</h2>
+    <div id="timer1m">00 : 00</div>
+    <div id="period1m"></div>
+    <button style="margin-top:30px" onclick="predict()">SHOW</button>
+    <div id="result"></div>
+  </div>
 
-  </div>  <script>
+  <script>
     const CORRECT_KEY = "NXMVIP30";
     const loginCard   = document.getElementById("loginCard");
     const predictCard = document.getElementById("predictCard");
@@ -105,8 +132,8 @@ button:hover{
     const periodBox   = document.getElementById("period1m");
 
     let timerInterval = null;
+    let lastPredictedPeriod = null;
 
-    /* ------------- Auth ------------- */
     function unlock(){
       const key = document.getElementById("keyInput").value.trim();
       if(key === CORRECT_KEY){
@@ -118,33 +145,41 @@ button:hover{
       }
     }
 
-    /* ------------- Prediction ------------- */
     function predict(){
+      const now = new Date();
+      const yyyyMMdd = now.toISOString().slice(0,10).replace(/-/g,"");
+      const totalMinutes = now.getUTCHours()*60 + now.getUTCMinutes();
+      const currentPeriod = `${yyyyMMdd}1000${10001 + totalMinutes}`;
+
+      if(lastPredictedPeriod === currentPeriod){
+        resultBox.textContent = "⏳ Please wait for next period!";
+        resultBox.style.opacity = 1;
+        return;
+      }
+
+      lastPredictedPeriod = currentPeriod;
       const choice = Math.random() < 0.5 ? "𝗕𝗜𝗚𝗚" : "𝗦𝗠𝗔𝗟𝗟";
       resultBox.textContent = choice + " 🎲";
-      // flash effect
       resultBox.style.opacity = 0;
       setTimeout(()=>{resultBox.style.opacity = 1;}, 80);
     }
 
-    /* ------------- Timer logic (1‑minute cycle) ------------- */
     function startTimer(){
-      updateTimer(); // immediate first run
+      updateTimer();
       timerInterval = setInterval(updateTimer, 1000);
     }
 
     function updateTimer(){
       const now = new Date();
-      // remaining seconds in current minute
       const remainingSeconds = 60 - now.getUTCSeconds();
       const formatted = `  ${("0"+Math.floor(remainingSeconds/60)).slice(-2)}  :  ${("0"+ (remainingSeconds%60)).slice(-2)}`;
       timerBox.textContent = formatted;
 
-      // period number "yyyyMMdd" + 1000 + (10001 + totalMinutes)
       const yyyyMMdd = now.toISOString().slice(0,10).replace(/-/g,"");
       const totalMinutes = now.getUTCHours()*60 + now.getUTCMinutes();
       const periodNum = 10001 + totalMinutes;
       periodBox.textContent = `${yyyyMMdd}1000${periodNum}`;
     }
-  </script></body>
+  </script>
+</body>
 </html>
